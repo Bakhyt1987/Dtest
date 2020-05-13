@@ -44,9 +44,9 @@ public class PositiveTests {
     Assert.assertTrue(logOutButton.isDisplayed(),"log out button not visible");
 
     WebElement successMessage = driver.findElement(By.cssSelector("div#flash"));
-    String expectedMessage = "You logged into a secure area!";
-    String actualMessage = successMessage.getText();
-    Assert.assertTrue(actualMessage.contains(expectedMessage));
+    String expectedErrorMessage = "You logged into a secure area!";
+    String actualErrorMessage = successMessage.getText();
+    Assert.assertTrue(actualErrorMessage.contains(expectedErrorMessage));
 
 
     driver.quit();
