@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -31,10 +32,16 @@ public class PositiveTests {
     WebElement password = driver.findElement(By.id("password"));
     password.sendKeys("SuperSecretPassword!");
 
-    WebElement loginButton = driver.findElement(By.xpath("//form[@id='login']/button[@class='radius']"));
-    loginButton.click();
+    WebElement logInButton = driver.findElement(By.xpath("//form[@id='login']/button[@class='radius']"));
+    logInButton.click();
 
-    String checkUrl = "https://the-internet.herokuapp.com/secure";
+
+    String expectedUrl = "https://the-internet.herokuapp.com/secure";
+    String actualUrl =driver.getCurrentUrl();
+    Assert.assertEquals(actualUrl,expectedUrl,"wrong url");
+
+    WebElement logOutButton = driver.findElement(By.xpath("//div[@id='content']//a[@href='/logout']/i[@class='icon-2x icon-signout']"));
+    Assert.assertTrue(logOutButton.isDisplayed(),"log out button not visible");
 
     driver.quit();
 
