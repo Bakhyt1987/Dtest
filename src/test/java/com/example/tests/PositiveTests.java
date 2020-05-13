@@ -43,6 +43,12 @@ public class PositiveTests {
     WebElement logOutButton = driver.findElement(By.xpath("//div[@id='content']//a[@href='/logout']/i[@class='icon-2x icon-signout']"));
     Assert.assertTrue(logOutButton.isDisplayed(),"log out button not visible");
 
+    WebElement successMessage = driver.findElement(By.cssSelector("div#flash"));
+    String expectedMessage = "You logged into a secure area!";
+    String actualMessage = successMessage.getText();
+    Assert.assertTrue(actualMessage.contains(expectedMessage));
+
+
     driver.quit();
 
   }
