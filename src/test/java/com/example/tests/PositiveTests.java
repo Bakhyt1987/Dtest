@@ -34,6 +34,7 @@ public class PositiveTests {
     WebElement loginButton = driver.findElement(By.xpath("//form[@id='login']/button[@class='radius']"));
     loginButton.click();
 
+    String checkUrl = "https://the-internet.herokuapp.com/secure";
 
     driver.quit();
 
