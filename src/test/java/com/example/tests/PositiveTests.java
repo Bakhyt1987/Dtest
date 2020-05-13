@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class PositiveTests {
 
   @Test
@@ -17,10 +19,21 @@ public class PositiveTests {
 
     String url = "https://the-internet.herokuapp.com/";
     driver.get(url);
-    driver.manage().timeouts().implicitlyWait(3,)
+    driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+    driver.manage().window().maximize();
 
     WebElement testPage = driver.findElement(By.linkText("Form Authentication"));
     testPage.click();
+
+    WebElement username = driver.findElement(By.id("username"));
+    username.sendKeys("tomsmith");
+
+    WebElement password = driver.findElement(By.id("password"));
+    password.sendKeys("SuperSecretPassword!");
+
+    WebElement loginButton = driver.findElement(By.xpath("//form[@id='login']/button[@class='radius']"));
+    loginButton.click();
+
 
     driver.quit();
 
